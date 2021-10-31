@@ -6,8 +6,8 @@ from flask import Flask, request, Response, render_template, jsonify
 
 #load model here 
 app = Flask(__name__)
-model = pickle.load(open('model.pkl', 'rb'))
-vectorizer = pickle.load(open('victorizer.pkl', 'rb'))
+#model = pickle.load(open('model.pkl', 'rb'))
+#vectorizer = pickle.load(open('victorizer.pkl', 'rb'))
 
 @app.route('/') 
 def home(): 
@@ -18,6 +18,9 @@ def predict():
     '''
     For rendering results on HTML GUI
     '''
+    model = pickle.load(open('model.pkl', 'rb'))
+    vectorizer = pickle.load(open('victorizer.pkl', 'rb'))
+    
     if request.method =='POST':
         message = request.form['message']
         data=[message]
